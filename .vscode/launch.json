@@ -13,7 +13,10 @@
             "console": "integratedTerminal",
             "args": [
                 "-c",
-                "/Users/svh/projects/HomeLighting/HomeLighting/lights.json"
+                "/Users/svh/projects/HomeLighting/HomeLighting/lights.json",
+                "-s",
+                "/Users/svh/projects/HomeLighting/HomeLighting/show.json"
+                // "/Users/svh/projects/HomeLighting/HomeLighting/show Black-Out.json"
             ]
         }
     ]

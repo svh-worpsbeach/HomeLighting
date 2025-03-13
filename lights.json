@@ -1,5 +1,5 @@
 {
-    "lights": [
+    "fixtures": [
       {
         "name": "Bar-3LED 1",
         "description": "Eurolite Bar 3-LED HCLg",
@@ -215,7 +215,7 @@
               },
               {
                 "sequence": 13,
-                "description": "Turquoise",
+                "description": "Turquise",
                 "min_value": 130,
                 "max_value": 139
               },
@@ -513,7 +513,7 @@
               },
               {
                 "sequence": 13,
-                "description": "Turquoise",
+                "description": "Turquise",
                 "min_value": 130,
                 "max_value": 139
               },

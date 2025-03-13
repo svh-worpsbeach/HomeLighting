@@ -1,47 +1,74 @@
 import json 
 import time
+import sys
 
-from Light import Light
+from Fixture import Fixture
 from Channel import Channel
 from Function import Function
-
-#import sys
-#raise RuntimeError(sys.path)
+from Show import Show
 
 from ArtnetConnector import ArtnetConnector
 
+import logging.handlers
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(logging.DEBUG)
+ch.setFormatter(logging.Formatter("[{asctime:s}] [{name:25s}] {levelname:8s} | {message:s}", style='{'))
+logging.getLogger().addHandler(ch)
+logging.getLogger().setLevel(logging.DEBUG)
 class Lighting:
 
-    lights = []
+    show = None
+    fixturess = []
     configData = {}
     ac = None
+    showParameter = []
+    playLoop = False
+    loopCount = None
 
-    def __init__(self, config_file):
-        if self.is_valid_json_file(config_file):
+    def __init__(self, config_file, show):
+        if self.is_valid_json_configfile(config_file):
 
-            if ('lights' in self.configData):
-                for light_data in self.configData['lights']:
+            if ('fixtures' in self.configData):
+                self.fixtures = self.read_lights_from_JSON()
+
+        self.show = show
+        self.ac = ArtnetConnector()
+    
+    def read_lights_from_JSON(self):
+        fixtures = []
+
+        for fixture_data in self.configData['fixtures']:
                     channels = []
-                    for channel_data in light_data['channels']:
+                    for channel_data in fixture_data['channels']:
                             functions = []
                             for functions_data in channel_data['functions']:
                                 function = Function(functions_data['sequence'], functions_data['description'], functions_data['min_value'], functions_data['max_value'])
                                 functions.append(function)
-                            channel = Channel(channel_data['name'], channel_data['description'], channel_data['offset'], channel_data['value'], functions)
+                            channel = Channel(channel_data['name'], channel_data['description'], channel_data['offset'], channel_data['value'], channel_data['type'],functions)
                             channels.append(channel)
-                    light = Light(light_data['name'], light_data['description'],light_data['base_channel'], channels)
-                    self.lights.append(light)
+                    fixture = Fixture(fixture_data['name'], fixture_data['description'],fixture_data['base_channel'], channels)
+                    fixtures.append(fixture)
 
-        self.ac = ArtnetConnector()
+        return fixtures
 
-    def is_valid_json_file(self, file_path):
+    def is_valid_json_configfile(self, file_path):
         try:
             with open(file_path) as f:
                 self.configData = json.load(f)
             return True
         except ValueError:
             return False
+        
+    def get_fixture(self, identifier):
+        fixture = None
 
+        for f in self.fixtures:
+             if f.get_name() == identifier:
+                fixture=f
+                pass
+
+        return fixture
+    
     def setMasterDimmer(self, light, value):
         ch = self.lights[light].get_channel_by_name("master")
         if ch != None:
@@ -67,7 +94,81 @@ class Lighting:
     def flashAllLights(self, delay):
         self.ac.flashAll(delay)
         
+    def play_steps_once(self, identifier, delay):
+        logging.debug(f"playing {identifier} steps once")
+
+        steps = self.show.get_steps(identifier)
+
+        for s in steps:
+             comment = s.get_comment()
+             light = s.get_light()
+             fixture = self.get_fixture(light)
+             base = fixture.get_base_channel()
+             
+             for set in s.get_settings():
+                chName = set.get_name()
+                chValue = set.get_value()
+                ch = fixture.get_channel_by_name(chName)
+                chType = ch.get_type()
+
+                if type(chValue) == 'str':
+                    chValue = ch.get_value_by_name(chValue)
+
+                offset = ch.get_offset()
+
+                chValue = ch.verify_function_value(chType, chName, chValue)
+
+                logging.debug(f"setting {chName} to {chValue} for base {base} and offset {offset}")
+                self.ac.setDataSlot(base + offset, chValue)
+                time.sleep(delay/1000)
+
+    def play_steps_loop(self, identifier, delay):
+        logging.debug(f"starting loop for {identifier} with playLoop set to {self.playLoop}")
+        cnt = 0
+
+        if self.show.showType == "loop":
+            self.playLoop = True
+
+        while self.playLoop:
+            self.play_steps_once(identifier, delay)
+            time.sleep(delay/1000)
+
+            if self.loopCount != None:
+                cnt += 1
+                logging.debug(f"loop count: {cnt}")
+
+                if cnt >= self.loopCount:
+                    logging.debug(f"stopping loop at count: {cnt}")
+                    self.playLoop = False
+             
+    def play_steps(self, identifier, delay):
+        logging.debug(f"playng steps from {identifier}") 
+
+        if delay > 0:
+            delay = self.show.get_Parameter("defaultDelay")
+            if self.show.showType == "sequence":
+                self.play_steps_once(identifier, delay)
+            elif self.show.showType == "loop":
+                self.loopCount = self.show.get_Parameter("loopCount")
+                self.play_steps_loop(identifier, delay)
+        else:
+            delay = 0
+            self.play_steps_once(identifier, delay)
+
+        
+                
+
     def action(self):
+        logging.debug("starting show")
+
+        self.play_steps_once('initSteps', 0)
+
+        self.play_steps('showSteps', 1)
+
+        self.play_steps_once('endSteps', 0)
+
+
+    def default_action(self):
 
         self.setAllDimmer(128)
         

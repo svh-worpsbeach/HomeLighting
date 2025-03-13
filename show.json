@@ -1,0 +1,140 @@
+{
+    "type": "loop",
+    "parameter": [
+        {
+            "name": "defaultDelay",
+            "value": 500
+        },
+        {
+            "name": "loopCount",
+            "value": 5
+        }
+    ],
+    "initShow": [
+        {
+            "Comment": "Set Master to max",
+            "light": "Bar-3LED 1",
+            "settings": [
+                {
+                    "name": "master",
+                    "value": 255
+                }
+            ]
+        },
+        {
+            "Comment": "Set Master to max",
+            "light": "Bar-3LED 2",
+            "settings": [
+                {
+                    "name": "master",
+                    "value": 255
+                }
+            ]
+        }
+    ],
+    "endShow": [
+        {
+            "Comment": "Set Master to 0",
+            "light": "Bar-3LED 1",
+            "settings": [
+                {
+                    "name": "master",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "Comment": "Set Master to 0",
+            "light": "Bar-3LED 2",
+            "settings": [
+                {
+                    "name": "master",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "showSteps": [
+        
+        {
+            "Comment": "Light 1: Set Preset to turquise",
+            "light": "Bar-3LED 1",
+            "settings": [
+                {
+                    "name": "presets",
+                    "value": "Turquise"
+                }
+            ]
+        },
+        {
+            "Comment": "Light 2: Set Amber to 200",
+            "light": "Bar-3LED 2",
+            "settings": [
+                {
+                    "name": "amber",
+                    "value": 200
+                }
+            ]
+        },
+        {
+            "Comment": "Light 1: Set Preset to turquise",
+            "light": "Bar-3LED 1",
+            "settings": [
+                {
+                    "name": "presets",
+                    "value": "Black"
+                }
+            ]
+        },
+        {
+            "Comment": "Light 2: Set Amber to 200",
+            "light": "Bar-3LED 2",
+            "settings": [
+                {
+                    "name": "amber",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "Comment": "Light 1: Set Amber to 200",
+            "light": "Bar-3LED 1",
+            "settings": [
+                {
+                    "name": "amber",
+                    "value": 200
+                }
+            ]
+        },
+        {
+            "Comment": "Light 2: Set Preset to turquise",
+            "light": "Bar-3LED 2",
+            "settings": [
+                {
+                    "name": "presets",
+                    "value": "Turquise"
+                }
+            ]
+        },
+        {
+            "Comment": "Light 1: Set Preset to turquise",
+            "light": "Bar-3LED 1",
+            "settings": [
+                {
+                    "name": "presets",
+                    "value": "Black"
+                }
+            ]
+        },
+        {
+            "Comment": "Light 2: Set Amber to 200",
+            "light": "Bar-3LED 2",
+            "settings": [
+                {
+                    "name": "amber",
+                    "value": 0
+                }
+            ]
+        }
+    ]
+}

@@ -14,12 +14,15 @@
 
 from Channel import Channel
 
-class Light:
+class Fixture:
     def __init__(self, name, description, base_channel, channels):
         self.name = name
         self.description=description
         self.base_channel = base_channel
         self.channels = channels
+
+    def get_name(self):
+        return self.name
         
     def add_channel(self, channel):
         self.channels.append ( channel)
@@ -33,3 +36,7 @@ class Light:
     def get_channel_by_name(self, name):
         channel = [ch for ch in self.channels if ch.name == name]
         return channel[0] if channel else None
+    
+    def get_base_channel(self):
+        return self.base_channel
+    
