@@ -10,11 +10,9 @@ from Show import Show
 from ArtnetConnector import ArtnetConnector
 
 import logging.handlers
-ch = logging.StreamHandler(sys.stdout)
-ch.setLevel(logging.DEBUG)
-ch.setFormatter(logging.Formatter("[{asctime:s}] [{name:25s}] {levelname:8s} | {message:s}", style='{'))
-logging.getLogger().addHandler(ch)
-logging.getLogger().setLevel(logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 class Lighting:
 
     show = None
@@ -95,7 +93,7 @@ class Lighting:
         self.ac.flashAll(delay)
         
     def play_steps_once(self, identifier, delay):
-        logging.debug(f"playing {identifier} steps once")
+        logger.debug(f"playing {identifier} steps once")
 
         steps = self.show.get_steps(identifier)
 
@@ -118,12 +116,12 @@ class Lighting:
 
                 chValue = ch.verify_function_value(chType, chName, chValue)
 
-                logging.debug(f"setting {chName} to {chValue} for base {base} and offset {offset}")
+                logger.debug(f"setting ch {chName}\t (ch-addr: {base} + {offset})\t --> {chValue}")
                 self.ac.setDataSlot(base + offset, chValue)
                 time.sleep(delay/1000)
 
     def play_steps_loop(self, identifier, delay):
-        logging.debug(f"starting loop for {identifier} with playLoop set to {self.playLoop}")
+        logger.debug(f"starting loop for {identifier} with playLoop set to {self.playLoop}")
         cnt = 0
 
         if self.show.showType == "loop":
@@ -135,14 +133,14 @@ class Lighting:
 
             if self.loopCount != None:
                 cnt += 1
-                logging.debug(f"loop count: {cnt}")
+                logger.debug(f"loop count: {cnt}")
 
                 if cnt >= self.loopCount:
-                    logging.debug(f"stopping loop at count: {cnt}")
+                    logger.debug(f"stopping loop at count: {cnt}")
                     self.playLoop = False
              
     def play_steps(self, identifier, delay):
-        logging.debug(f"playng steps from {identifier}") 
+        logger.debug(f"playng steps from {identifier}") 
 
         if delay > 0:
             delay = self.show.get_Parameter("defaultDelay")
@@ -155,17 +153,16 @@ class Lighting:
             delay = 0
             self.play_steps_once(identifier, delay)
 
-        
-                
-
     def action(self):
-        logging.debug("starting show")
+        logger.debug("starting show")
 
         self.play_steps_once('initSteps', 0)
 
         self.play_steps('showSteps', 1)
 
         self.play_steps_once('endSteps', 0)
+
+        logger.debug("ending show")
 
 
     def default_action(self):

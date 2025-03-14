@@ -5,7 +5,8 @@ ch = logging.StreamHandler(sys.stdout)
 ch.setLevel(logging.DEBUG)
 ch.setFormatter(logging.Formatter("[{asctime:s}] [{name:25s}] {levelname:8s} | {message:s}", style='{'))
 logging.getLogger().addHandler(ch)
-logging.getLogger().setLevel(logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 from Lighting import Lighting
 from Show import Show
@@ -33,22 +34,22 @@ def set_and_check_config():
         if (parameter == "-c") | (parameter == "--configfile"):
             # do something
             lightingFileName = sys.argv[i+1]
-            logging.debug (f"Configfile {lightingFileName}")
+            logger.debug (f"Configfile {lightingFileName}")
             pass
 
         if (parameter == "-s") | (parameter == "--showfile"):
             # do something
             showFileName = sys.argv[i+1]
-            logging.debug (f"Showfile {showFileName}")
+            logger.debug (f"Showfile {showFileName}")
             pass
 
     if (lightingFileName is None):
-        logging.debug(f"Not all parameters set from command line: {sys.argv}")
+        logger.debug(f"Not all parameters set from command line: {sys.argv}")
         print("Invalid parameter")
         sys.exit(1)
     else:  
         if showFileName is None:
-            logging.debug(f"Starting without show configuration")
+            logger.debug(f"Starting without show configuration")
             show = Show(None)
         else:
             show = Show(showFileName)
