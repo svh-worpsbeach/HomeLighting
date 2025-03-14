@@ -1,5 +1,9 @@
 from stupidArtnet import StupidArtnet
 
+import logging.handlers
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARN)
+
 class ArtnetConnector:
 
     TARGET_IP = '192.168.178.165'             # typically in 2.x or 10.x range
@@ -11,6 +15,7 @@ class ArtnetConnector:
         self.artnet.start()
 
     def setDataSlot(self, channel, value):
+        logger.debug(f"Setting single slot for channel {channel}\t--> {value}")
         self.artnet.set_single_value(channel, value)
         self.artnet.show()
 

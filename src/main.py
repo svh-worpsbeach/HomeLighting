@@ -6,7 +6,7 @@ ch.setLevel(logging.DEBUG)
 ch.setFormatter(logging.Formatter("[{asctime:s}] [{name:25s}] {levelname:8s} | {message:s}", style='{'))
 logging.getLogger().addHandler(ch)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.WARN)
 
 from Lighting import Lighting
 from Show import Show
