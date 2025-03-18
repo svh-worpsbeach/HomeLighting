@@ -121,8 +121,8 @@
             "light": "Bar-3LED 1",
             "settings": [
                 {
-                    "name": "presets",
-                    "value": "Black"
+                    "name": "amber",
+                    "value": 0
                 }
             ]
         },
@@ -131,8 +131,8 @@
             "light": "Bar-3LED 2",
             "settings": [
                 {
-                    "name": "amber",
-                    "value": 0
+                    "name": "presets",
+                    "value": "Black"
                 }
             ]
         }
