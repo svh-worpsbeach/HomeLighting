@@ -73,7 +73,7 @@ class LightingREST:
         #    else:
         #        return jsonify({'error': 'Light not found'}), 404
 
-    def run(self, host='0.0.0.0', port=5000):
+    def run(self, host='0.0.0.0', port=9999):
         logger.debug(f"starting REST server on host {host}:{port}")
         self.app.run(host=host, port=port)
 
