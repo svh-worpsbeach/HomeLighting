@@ -8,6 +8,7 @@ from Function import Function
 from Show import Show
 
 from ArtnetConnector import ArtnetConnector
+from LightingREST import LightingREST
 
 import logging.handlers
 logger = logging.getLogger(__name__)
@@ -31,6 +32,7 @@ class Lighting:
 
         self.show = show
         self.ac = ArtnetConnector()
+        self.lightingREST = LightingREST(self.fixtures)
     
     def read_lights_from_JSON(self):
         fixtures = []
@@ -165,6 +167,9 @@ class Lighting:
         logger.debug("ending show")
 
 
+    def start_REST_server(self):
+        self.lightingREST.run()
+        
     def default_action(self):
 
         self.setAllDimmer(128)

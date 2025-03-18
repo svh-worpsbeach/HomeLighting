@@ -64,7 +64,8 @@ def main():
     
     if lighting is not None:
         if show is not None:
-            lighting.action()
+            # lighting.action()
+            lighting.start_REST_server()
 
 if __name__ == "__main__":
     main()
