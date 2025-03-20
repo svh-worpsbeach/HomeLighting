@@ -4,9 +4,8 @@
     // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
-            "name": "Python-Debugger: Aktuelle Datei mit Argumenten",
+            "name": "Python-Debugger: iMac Aktuelle Datei mit Argumenten",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
@@ -19,7 +18,7 @@
                 // "/Users/svh/projects/HomeLighting/HomeLighting/show Black-Out.json"
             ]
         },{
-            "name": "Python-Debugger: Aktuelle Datei mit Argumenten",
+            "name": "Python-Debugger: MacBook Aktuelle Datei mit Argumenten",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",

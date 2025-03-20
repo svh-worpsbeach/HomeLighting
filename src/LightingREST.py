@@ -2,20 +2,36 @@
 from flask import Flask, request, jsonify
 
 import logging.handlers
+import json
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 class LightingREST:
+
+    fixtures = None
+
+    def get_fixture(self, identifier):
+        fixture = None
+
+        for f in self.fixtures:
+             if f.get_name() == identifier:
+                fixture=f
+                pass
+
+        return fixture
+    
     def __init__(self, fixtures):
+        self.fixtures = fixtures
         self.app = Flask(__name__)
         # self.lights = {}  # Hypothetical lighting system state
 
         @self.app.route('/fixtures/count', methods=['GET'])
-        def get_light_count(light_id):
+        def get_light_count():
             logger.debug(f"request: light count")
-            if len(self.lights) > 0:
-                logger.debug(len(self.lights))
-                return jsonify({'count': len(self.lights)})
+            if len(self.lighting.fixtures) > 0:
+                logger.debug(len(self.lighting.fixtures))
+                return jsonify({'count': len(self.lighting.fixtures)})
             else:
                 return jsonify({'error': 'no lights defined'}), 404
         
@@ -24,7 +40,7 @@ class LightingREST:
             logger.debug(f"request: light names")
             names = []
 
-            for fix in fixtures:
+            for fix in self.lighting.fixtures:
                 name = fix.get_name()
                 names.append(name)
 
@@ -37,11 +53,12 @@ class LightingREST:
         @self.app.route('/fixtures/<string:fixture_id>', methods=['GET'])
         def get_light_status(fixture_id):
             logger.debug(f"request: light defnition of {fixture_id}")
-            fixture = self.fixtures.get_fixture(fixture_id)
+            fixture = self.get_fixture(fixture_id)
 
             if fixture != None:
                 logger.debug(fixture)
-                return jsonify({'fixture': fixture})
+                json_data = json.dumps(fixture, default=lambda o: o.__dict__, indent=4)
+                return json_data
             else:
                 return jsonify({'error': 'Fixture not found'}), 404
 
@@ -78,5 +95,5 @@ class LightingREST:
         self.app.run(host=host, port=port)
 
 if __name__ == '__main__':
-    lighting_rest = LightingREST()
+    lighting_rest = LightingREST(None)
     lighting_rest.run()

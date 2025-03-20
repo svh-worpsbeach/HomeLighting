@@ -17,7 +17,7 @@ logger.setLevel(logging.DEBUG)
 class Lighting:
 
     show = None
-    fixturess = []
+    fixtures = []
     configData = {}
     ac = None
     showParameter = []
@@ -58,16 +58,6 @@ class Lighting:
             return True
         except ValueError:
             return False
-        
-    def get_fixture(self, identifier):
-        fixture = None
-
-        for f in self.fixtures:
-             if f.get_name() == identifier:
-                fixture=f
-                pass
-
-        return fixture
     
     def setMasterDimmer(self, light, value):
         ch = self.lights[light].get_channel_by_name("master")
@@ -168,6 +158,7 @@ class Lighting:
 
 
     def start_REST_server(self):
+        RESTapi= LightingREST(self)
         self.lightingREST.run()
         
     def default_action(self):
