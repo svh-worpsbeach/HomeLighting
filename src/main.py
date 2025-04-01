@@ -31,14 +31,14 @@ def set_and_check_config():
 
         parameter = sys.argv[i]
 
-        if (parameter == "-c") | (parameter == "--configfile"):
-            # do something
+        if (parameter == "-f") | (parameter == "--fixturefile"):
+            # get the fixture file name from command line
             lightingFileName = sys.argv[i+1]
             logger.debug (f"Configfile {lightingFileName}")
             pass
 
         if (parameter == "-s") | (parameter == "--showfile"):
-            # do something
+            # get the show definition file name from command line
             showFileName = sys.argv[i+1]
             logger.debug (f"Showfile {showFileName}")
             pass
@@ -54,7 +54,7 @@ def set_and_check_config():
         else:
             show = Show(showFileName)
 
-        lighting = Lighting(lightingFileName, show)
+        lighting = Lighting(lightingFileName)
 
 
 

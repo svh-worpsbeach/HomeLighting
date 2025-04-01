@@ -20,6 +20,7 @@ class Fixture:
         self.description=description
         self.base_channel = base_channel
         self.channels = channels
+        self.data = [0] * len(channels)
 
     def get_name(self):
         return self.name
@@ -34,9 +35,28 @@ class Fixture:
         return self.channels
     
     def get_channel_by_name(self, name):
-        channel = [ch for ch in self.channels if ch.name == name]
-        return channel[0] if channel else None
+        channel = self.channels[name]
+        return channel if channel else None
     
     def get_base_channel(self):
         return self.base_channel
     
+    def get_channel_offset(self, channel):
+        ch = self.channels[channel]
+
+        if ch != None:    
+            return ch.get_offset()
+        
+        return None
+
+    def clear_all_channels(self):
+        self.data = [0 for _ in self.data]
+
+    def set_channel_data(self, channel, value):
+        self.data[self.get_channel_offset(channel)] = value
+    
+    def get_fixture_data(self):
+        return self.data
+    
+    def update_lighting_data(self, lightingDriver):
+        lightingDriver.update_data_slots(self.base_channel, self.data)

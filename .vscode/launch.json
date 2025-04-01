@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "-c",
+                "-f",
                 "/Users/svh/projects/HomeLighting/HomeLighting/lights.json",
                 "-s",
                 "/Users/svh/projects/HomeLighting/HomeLighting/show.json"
@@ -24,7 +24,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "-c",
+                "-f",
                 "/Users/svh/Documents/projects/HomeLighting/HomeLighting/lights.json",
                 "-s",
                 "/Users/svh/Documents/projects/HomeLighting/HomeLighting/show.json"

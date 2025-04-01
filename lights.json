@@ -595,6 +595,602 @@
             ]
           }
         ]
+      },
+      {
+        "name": "Par-7LED 1",
+        "description": "Eurolite SLS-7-LED HCL",
+        "base_channel": 120,
+        "channels": [
+          {
+            "name": "master",
+            "description": "Master Dimmer",
+            "offset": 0,
+            "scope": "global",
+            "value": 255,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Master Dimmer",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },
+          {
+            "name": "strobe",
+            "description": "Strobe with current light setting",
+            "offset": 1,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Strobe",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },
+          {
+            "name": "red",
+            "description": "Red",
+            "offset": 2,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Red",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "green",
+            "description": "Green",
+            "offset": 3,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Green",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "blue",
+            "description": "Blue",
+            "offset": 4,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Blue",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "white",
+            "description": "White",
+            "offset": 5,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "White",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "amber",
+            "description": "Amber",
+            "offset": 6,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Amber",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "uv",
+            "description": "UV",
+            "offset": 7,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "UV",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "presets",
+            "description": "Presets",
+            "offset": 8,
+            "scope": "global",
+            "value": 0,
+            "type": "presets",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Black",
+                "min_value": 0,
+                "max_value": 9
+              },
+              {
+                "sequence": 1,
+                "description": "Red",
+                "min_value": 10,
+                "max_value": 19
+              },
+              {
+                "sequence": 2,
+                "description": "Green",
+                "min_value": 20,
+                "max_value": 29
+              },
+              {
+                "sequence": 3,
+                "description": "Blue",
+                "min_value": 30,
+                "max_value": 39
+              },
+              {
+                "sequence": 4,
+                "description": "White",
+                "min_value": 40,
+                "max_value": 49
+              },
+              {
+                "sequence": 5,
+                "description": "Amber",
+                "min_value": 50,
+                "max_value": 59
+              },
+              {
+                "sequence": 6,
+                "description": "UV",
+                "min_value": 60,
+                "max_value": 69
+              },
+              {
+                "sequence": 7,
+                "description": "Yellow",
+                "min_value": 70,
+                "max_value": 79
+              },
+              {
+                "sequence": 8,
+                "description": "Magenta",
+                "min_value": 80,
+                "max_value": 89
+              },
+              {
+                "sequence": 9,
+                "description": "Cyan",
+                "min_value": 90,
+                "max_value": 99
+              },
+              {
+                "sequence": 10,
+                "description": "Dark Orange",
+                "min_value": 100,
+                "max_value": 109
+              },
+              {
+                "sequence": 11,
+                "description": "Green Yellow",
+                "min_value": 110,
+                "max_value": 119
+              },
+              {
+                "sequence": 12,
+                "description": "Salmon",
+                "min_value": 120,
+                "max_value": 129
+              },
+              {
+                "sequence": 13,
+                "description": "Turquise",
+                "min_value": 130,
+                "max_value": 139
+              },
+              {
+                "sequence": 14,
+                "description": "Light Green",
+                "min_value": 140,
+                "max_value": 149
+              },
+              {
+                "sequence": 15,
+                "description": "Orange",
+                "min_value": 150,
+                "max_value": 159
+              },
+              {
+                "sequence": 16,
+                "description": "Lavender",
+                "min_value": 160,
+                "max_value": 169
+              },
+              {
+                "sequence": 17,
+                "description": "Light Blue",
+                "min_value": 170,
+                "max_value": 179
+              },
+              {
+                "sequence": 18,
+                "description": "Dark Blue",
+                "min_value": 180,
+                "max_value": 189
+              },
+              {
+                "sequence": 19,
+                "description": "Pink",
+                "min_value": 190,
+                "max_value": 255
+              }
+            ]
+          },{
+            "name": "automation",
+            "description": "Automation",
+            "offset": 9,
+            "scope": "global",
+            "value": 0,
+            "type": "program",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "No Function",
+                "min_value": 0,
+                "max_value": 9
+              },
+              {
+                "sequence": 1,
+                "description": "Auto Color Fade",
+                "min_value": 10,
+                "max_value": 69
+              },
+              {
+                "sequence": 2,
+                "description": "Auto Color Change",
+                "min_value": 70,
+                "max_value": 129
+              },
+              {
+                "sequence": 3,
+                "description": "Sound-controlled Color Fade",
+                "min_value": 130,
+                "max_value": 189
+              },
+              {
+                "sequence": 4,
+                "description": "Sound-controlled Color Change",
+                "min_value": 190,
+                "max_value": 255
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Par-7LED 2",
+        "description": "Eurolite SLS-7-LED HCL",
+        "base_channel": 130,
+        "channels": [
+          {
+            "name": "master",
+            "description": "Master Dimmer",
+            "offset": 0,
+            "scope": "global",
+            "value": 255,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Master Dimmer",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },
+          {
+            "name": "strobe",
+            "description": "Strobe with current light setting",
+            "offset": 1,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Strobe",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },
+          {
+            "name": "red",
+            "description": "Red",
+            "offset": 2,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Red",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "green",
+            "description": "Green",
+            "offset": 3,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Green",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "blue",
+            "description": "Blue",
+            "offset": 4,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Blue",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "white",
+            "description": "White",
+            "offset": 5,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "White",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "amber",
+            "description": "Amber",
+            "offset": 6,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Amber",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "uv",
+            "description": "UV",
+            "offset": 7,
+            "scope": "global",
+            "value": 0,
+            "type": "dimmer",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "UV",
+                "min_value": 0,
+                "max_value": 255
+              } 
+            ]
+          },{
+            "name": "presets",
+            "description": "Presets",
+            "offset": 8,
+            "scope": "global",
+            "value": 0,
+            "type": "presets",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "Black",
+                "min_value": 0,
+                "max_value": 9
+              },
+              {
+                "sequence": 1,
+                "description": "Red",
+                "min_value": 10,
+                "max_value": 19
+              },
+              {
+                "sequence": 2,
+                "description": "Green",
+                "min_value": 20,
+                "max_value": 29
+              },
+              {
+                "sequence": 3,
+                "description": "Blue",
+                "min_value": 30,
+                "max_value": 39
+              },
+              {
+                "sequence": 4,
+                "description": "White",
+                "min_value": 40,
+                "max_value": 49
+              },
+              {
+                "sequence": 5,
+                "description": "Amber",
+                "min_value": 50,
+                "max_value": 59
+              },
+              {
+                "sequence": 6,
+                "description": "UV",
+                "min_value": 60,
+                "max_value": 69
+              },
+              {
+                "sequence": 7,
+                "description": "Yellow",
+                "min_value": 70,
+                "max_value": 79
+              },
+              {
+                "sequence": 8,
+                "description": "Magenta",
+                "min_value": 80,
+                "max_value": 89
+              },
+              {
+                "sequence": 9,
+                "description": "Cyan",
+                "min_value": 90,
+                "max_value": 99
+              },
+              {
+                "sequence": 10,
+                "description": "Dark Orange",
+                "min_value": 100,
+                "max_value": 109
+              },
+              {
+                "sequence": 11,
+                "description": "Green Yellow",
+                "min_value": 110,
+                "max_value": 119
+              },
+              {
+                "sequence": 12,
+                "description": "Salmon",
+                "min_value": 120,
+                "max_value": 129
+              },
+              {
+                "sequence": 13,
+                "description": "Turquise",
+                "min_value": 130,
+                "max_value": 139
+              },
+              {
+                "sequence": 14,
+                "description": "Light Green",
+                "min_value": 140,
+                "max_value": 149
+              },
+              {
+                "sequence": 15,
+                "description": "Orange",
+                "min_value": 150,
+                "max_value": 159
+              },
+              {
+                "sequence": 16,
+                "description": "Lavender",
+                "min_value": 160,
+                "max_value": 169
+              },
+              {
+                "sequence": 17,
+                "description": "Light Blue",
+                "min_value": 170,
+                "max_value": 179
+              },
+              {
+                "sequence": 18,
+                "description": "Dark Blue",
+                "min_value": 180,
+                "max_value": 189
+              },
+              {
+                "sequence": 19,
+                "description": "Pink",
+                "min_value": 190,
+                "max_value": 255
+              }
+            ]
+          },{
+            "name": "automation",
+            "description": "Automation",
+            "offset": 9,
+            "scope": "global",
+            "value": 0,
+            "type": "program",
+            "functions": [
+              {
+                "sequence": 0,
+                "description": "No Function",
+                "min_value": 0,
+                "max_value": 9
+              },
+              {
+                "sequence": 1,
+                "description": "Auto Color Fade",
+                "min_value": 10,
+                "max_value": 69
+              },
+              {
+                "sequence": 2,
+                "description": "Auto Color Change",
+                "min_value": 70,
+                "max_value": 129
+              },
+              {
+                "sequence": 3,
+                "description": "Sound-controlled Color Fade",
+                "min_value": 130,
+                "max_value": 189
+              },
+              {
+                "sequence": 4,
+                "description": "Sound-controlled Color Change",
+                "min_value": 190,
+                "max_value": 255
+              }
+            ]
+          }
+        ]
       }
     ]
   }
