@@ -3,9 +3,10 @@ from flask import Flask, request, jsonify
 
 import logging.handlers
 import json
+import time
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 class LightingREST:
 
@@ -30,9 +31,9 @@ class LightingREST:
         def get_light_count():
             logger.debug(f"request: light count")
 
-            if len(self.lighting.fixtures) > 0:
-                logger.debug(len(self.lighting.fixtures))
-                return jsonify({'count': len(self.lighting.fixtures)})
+            if len(self.fixtures) > 0:
+                logger.debug(len(self.fixtures))
+                return jsonify({'count': len(self.fixtures)})
             else:
                 return jsonify({'error': 'no lights defined'}), 404
         
@@ -47,6 +48,15 @@ class LightingREST:
                 return jsonify({'names': names})
             else:
                 return jsonify({'error': 'no fixtures defined'}), 404
+            
+        @self.app.route('/fixtures/blackout', methods=['GET'])
+        def black_out_fixtures():
+            logger.debug(f"request: blank")
+
+            if self.ac.blackout_all_fixtures():
+                return jsonify({'status': 'success'}), 201
+            else:
+                return jsonify({'error': 'blanking did not work'}), 404
 
         @self.app.route('/fixtures/<string:fixture_id>', methods=['GET'])
         def get_light_status(fixture_id):
@@ -97,6 +107,27 @@ class LightingREST:
             else:
                 return jsonify({'error': 'failed to set channels'}), 409
 
+        @self.app.route('/fixtures/flash', methods=['POST'])
+        def flash_all_fixtures():
+            logger.debug(f"request: flash all fixtures")
+
+            data = request.get_json()
+            flashLength = data.get('length')
+            flashCycles = data.get('cycles')
+            flashDelay = data.get('delay')
+   
+            for i in range(flashCycles):
+
+                for fixture in self.fixtures.values():
+                    fixture.flash(self.ac, flashLength)
+
+                time.sleep(flashDelay/1000)
+
+            if data != None:
+                return jsonify({'status': 'success'}), 201
+            else:
+                return jsonify({'error': 'failed to set channels'}), 409
+            
     def run(self, host='0.0.0.0', port=9999):
         logger.debug(f"starting REST server on host {host}:{port}")
         self.app.run(host=host, port=port)

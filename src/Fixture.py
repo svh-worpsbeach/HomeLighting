@@ -12,6 +12,8 @@
 
 # Assisted by watsonx Code Assistant 
 
+import time
+
 from Channel import Channel
 
 class Fixture:
@@ -21,6 +23,7 @@ class Fixture:
         self.base_channel = base_channel
         self.channels = channels
         self.data = [0] * len(channels)
+        self.flashdata = [0] * len(channels)
 
     def get_name(self):
         return self.name
@@ -54,9 +57,20 @@ class Fixture:
 
     def set_channel_data(self, channel, value):
         self.data[self.get_channel_offset(channel)] = value
+
+        if channel in ['red', 'green', 'blue', 'white', 'amber', 'uv', 'master']:
+            if value < 200:
+                self.flashdata[self.get_channel_offset(channel)] = 255
+            else:
+                self.flashdata[self.get_channel_offset(channel)] = 200
     
     def get_fixture_data(self):
         return self.data
     
+    def flash(self, lightingDriver, delay):
+        lightingDriver.update_data_slots(self.base_channel, self.flashdata) 
+        time.sleep(delay/1000)
+        lightingDriver.update_data_slots(self.base_channel, self.data) 
+        
     def update_lighting_data(self, lightingDriver):
         lightingDriver.update_data_slots(self.base_channel, self.data)

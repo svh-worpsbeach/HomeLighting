@@ -23,17 +23,17 @@ class ArtnetConnector:
     def update(self):
         self.artnet.show()
 
-    def setBulkDataSlots(self, basechannel, values, update):
-        self.artnet.set_simplified_values(basechannel, values)
-
-    def flashAll(self, delay):
-        self.artnet.flash_all(delay)
+    def blackout_all_fixtures(self):
+        self.artnet.blackout()
+        self.artnet.show()
+        return True
 
     def update_data_slots(self, baseChannel, data):
         logger.debug(f"setting artnet buffer at address {baseChannel}")
 
         index = 0
         for dataPoint in data:
+            logger.debug(f"base {baseChannel} -> offset {index}  = value {dataPoint}")
             self.artnet.set_single_value(baseChannel+index, dataPoint)
             index += 1
 
