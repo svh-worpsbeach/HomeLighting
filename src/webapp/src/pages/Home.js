@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function Home() {
 
-    const [isDataFetched, setIsDataFetched] = useState(false);
+    const [isFixtureNamesDataFetched, setIsFixtureNamesDataFetched] = useState(false);
     const [isFixtureDetailsDataFetched, setIsFixtureDetailsDataFetched] = useState(false);
     let [fixturenames, setFixtureNames] = useState([]);
     let [fixturedetails, setFixtureDetails] = useState([]);
@@ -40,8 +40,8 @@ function Home() {
         }
       }
 
-      function handleClick() {
-        setIsDataFetched(!isDataFetched);
+      function handleClickNames() {
+        setIsFixtureNamesDataFetched(!isFixtureNamesDataFetched);
         getFixtureNames();
       }
 
@@ -50,8 +50,8 @@ function Home() {
         getFixtureDetails(fixturename);
     }
 
-    if (!isDataFetched) {
-        return <button onClick={handleClick}>Get Fixture List</button>;
+    if (!isFixtureNamesDataFetched) {
+        return <button onClick={handleClickNames}>Get Fixture List</button>;
     }
     
     if (fixturenames.length == 0) {
